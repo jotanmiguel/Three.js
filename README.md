@@ -99,7 +99,7 @@ Add additional notes about how to deploy this on a live system.
 ## ⛏️ Built Using <a name = "built_using"></a>
 
 - [Three.js](https://www.mongodb.com/) - JavaScript 3D Library
-- [Parcel]([https://expressjs.com/](https://www.npmjs.com/package/parcel)) - web application bundler
+- [Parcel](https://www.npmjs.com/package/parcel) - web application bundler
 - [NodeJs](https://nodejs.org/en/) - Server Environment
 
 ## ✍️ Authors <a name = "authors"></a>

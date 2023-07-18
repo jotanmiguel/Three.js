@@ -38,6 +38,7 @@ The goal with this project is to understand how Three.js work, because I'm worki
 Also, I wanted to improve my 3D skills, and this will help a lot on how the "3D world" works.
 In the end, I want to have a fully working 3D animation, based on the video, with some twists, and a finished project.
 
+<!--
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
@@ -95,6 +96,7 @@ Add notes about how to use the system.
 ## 🚀 Deployment <a name = "deployment"></a>
 
 Add additional notes about how to deploy this on a live system.
+-->
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 

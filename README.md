@@ -8,15 +8,15 @@
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
+[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/jotanmiguel/Three.js/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/jotanmiguel/Three.js/pulls)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 </div>
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> This project is just a <a href="https://www.youtube.com/watch?v=xJAfLdUgdc4">Three.js Tutorial</a> made by <a href="https://github.com/WaelYasmina">Wael Yasmina</a> I am following on youtube. Made some changes but it's 90% based on the video.
     <br> 
 </p>
 
@@ -34,7 +34,9 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+The goal with this project is to understand how Three.js work, because I'm working on a project that uses this technology. 
+Also, I wanted to improve my 3D skills, and this will help a lot on how the "3D world" works.
+In the end, I want to have a fully working 3D animation, based on the video, with some twists, and a finished project.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -96,19 +98,16 @@ Add additional notes about how to deploy this on a live system.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
+- [Three.js](https://www.mongodb.com/) - JavaScript 3D Library
+- [Parcel]([https://expressjs.com/](https://www.npmjs.com/package/parcel)) - web application bundler
 - [NodeJs](https://nodejs.org/en/) - Server Environment
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
+- [@jotanmiguel](https://github.com/kylelobo) - Idea
 
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/jotanmiguel/Three.js/contributors) who participated in this project.
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
+[Wael Yasmina](https://github.com/WaelYasmina)

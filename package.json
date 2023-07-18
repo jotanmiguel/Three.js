@@ -1,8 +1,19 @@
 {
-  "dependencies": {
-    "three": "^0.154.0"
+  "name": "three",
+  "version": "1.0.0",
+  "description": "Three.js Tutorial",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "vite": "^4.4.4"
+    "parcel": "^2.9.3"
+  },
+  "dependencies": {
+    "dat.gui": "^0.7.9",
+    "three": "^0.154.0"
   }
 }

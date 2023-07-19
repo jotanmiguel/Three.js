@@ -4,13 +4,14 @@
   "description": "Three.js Tutorial",
   "main": "index.js",
   "scripts": {
-    "build": "parcel build src/index.html -d dist"
+    "start": "parcel src/index.html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "parcel": "^2.9.3"
+    "parcel": "^2.9.3",
+    "parcel-bundler": "^1.12.5"
   },
   "dependencies": {
     "dat.gui": "^0.7.9",

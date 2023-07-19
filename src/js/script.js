@@ -1,7 +1,14 @@
 //module imports
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import * as dat from 'dat.gui'; 
+import * as dat from 'dat.gui';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'; 
+
+//images import
+import nebula from '../img/nebula.jpg';
+import stars from '../img/stars.jpg';
+
+const f1Url = new URL('../assets/f1.glb', import.meta.url);
 
 const renderer = new THREE.WebGLRenderer();
 
@@ -93,7 +100,28 @@ scene.add(spotLightHelper);
 //exponencial fog
 scene.fog = new THREE.FogExp2(0xFFFFFF, 0.01);
 
-renderer.setClearColor(0xFFEA00)
+// renderer.setClearColor(0xFFEA00)
+
+// simple 2d texture loader
+const textureLoader = new THREE.TextureLoader();
+//scene.background = textureLoader.load(stars);
+//---------------------------------------------------
+// cube texture loader
+const cubeTextureLoader = new THREE.CubeTextureLoader();
+scene.background = cubeTextureLoader.load([
+    stars, stars, stars, stars, stars, stars
+]);
+
+const box2Geometry = new THREE.BoxGeometry(4, 4, 4);
+const box2Material = new THREE.MeshBasicMaterial({
+    //color: 0x00ff00,
+    map: textureLoader.load(nebula)
+});
+const box2 = new THREE.Mesh(box2Geometry, box2Material);
+scene.add(box2);
+box2.position.set(10, 3, 10);
+box2.castShadow = true;
+box2.material.map = textureLoader.load(stars);
 
 //calculate all trig circules positions
 function trigLoop() {
@@ -112,6 +140,45 @@ function trigCoords(deg) {
     y = Math.cos(deg * THREE.MathUtils.DEG2RAD)
     return {x, y};
 }
+
+const plane2Geometry = new THREE.PlaneGeometry(10, 10, 10, 10);
+const plane2Material = new THREE.MeshBasicMaterial({
+    color: 0xFFFFFF,
+    wireframe: true
+});
+const plane2 = new THREE.Mesh(plane2Geometry, plane2Material);
+scene.add(plane2);
+plane2.position.set(10, 10, 15);
+
+plane2.geometry.attributes.position.array[0] -= 10 * Math.random();
+plane2.geometry.attributes.position.array[1] -= 10 * Math.random();
+plane2.geometry.attributes.position.array[2] -= 10 * Math.random();
+const lastPointz = plane2.geometry.attributes.position.array.length - 1;
+plane2.geometry.attributes.position.array[lastPointz] += 10 * Math.random();
+
+// const vShader = `
+//     void main() {
+//         gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+//     }
+// `;
+
+// const fShader = `
+//     void main() {
+//         gl_FragColor = vec4(0.5, 0.5, 1.0, 1.0);
+//     }
+// `;
+
+const sphere2Geometry = new THREE.SphereGeometry(4);
+const sphere2Material = new THREE.MeshBasicMaterial({
+    vertexShader: document.getElementById('vertexShader').textContent,
+    fragmentShader: document.getElementById('fragmentShader').textContent,
+});
+
+const assetLoader = new GLTFLoader();
+assetLoader.load(f1Url.href, function(gltf){
+    const model = gltf.scene;      
+    scene.add(model);
+}, undefined, function(error){ console.log(error) });
 
 //GUI controls
 const gui = new dat.GUI();
@@ -146,6 +213,18 @@ gui.add(options, 'intensity', 0, 1)
 let step = 0;
 let degree = 0;
 
+const mousePosition = new THREE.Vector2();
+
+const sphereId = sphere.id;
+box2.name = 'theBox';
+ 
+window.addEventListener('mousemove', function(e){
+    mousePosition.x = e.clientX / window.innerWidth * 2 - 1;
+    mousePosition.y = -(e.clientY / window.innerHeight) * 2 + 1;
+});
+
+const raycaster = new THREE.Raycaster();
+
 //animation loop
 function animate(time) {
     box.rotation.x = time/1000;
@@ -161,11 +240,39 @@ function animate(time) {
     spotLight.penumbra = options.penumbra;
     spotLight.intensity = options.intensity;
     spotLightHelper.update();
+
+    //select elements with mouse
+    raycaster.setFromCamera(mousePosition, camera);
+    const intersects = raycaster.intersectObjects(scene.children);
+
+    for(let i = 0; i < intersects.length; i++){
+        if(intersects[i].object.id === sphereId){
+            intersects[i].object.material.color.set(0xff0000);
+        }
+
+        if (intersects[i].object.name === 'theBox'){
+            intersects[i].object.rotation.x = time/1000;
+            intersects[i].object.rotation.y = time/1000;
+        }
+    }
     
     step += options.speed;
     sphere.position.y = Math.abs(Math.sin(step)) * 10 + 4;
+
+    plane2.geometry.attributes.position.array[0] -= 10 * Math.random();
+    plane2.geometry.attributes.position.array[1] -= 10 * Math.random();
+    plane2.geometry.attributes.position.array[2] -= 10 * Math.random();
+    const lastPointz = plane2.geometry.attributes.position.array.length - 1;
+    plane2.geometry.attributes.position.array[lastPointz] += 10 * Math.random();
+    plane2.geometry.attributes.position.needsUpdate = true;
 
     renderer.render(scene, camera);
 }
 
 renderer.setAnimationLoop(animate);
+
+window.addEventListener('resize', function(){
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
